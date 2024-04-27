@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function FilterInput() {
+export default function FilterInput({handleFilterSubmit}) {
   return (
     <form action="">
-        <select id="region">
+        <select id="region" onChange={e =>handleFilterSubmit(e.target.value)}>
           <option value="">All</option>
           <option value="Africa">Africa</option>
           <option value="Americas">Americas</option>
