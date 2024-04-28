@@ -1,6 +1,8 @@
-import React from 'react'
+interface FilterInputProps {
+    handleFilterSubmit: (region: string) => void;
+}
 
-export default function FilterInput({handleFilterSubmit}) {
+export default function FilterInput({handleFilterSubmit} : FilterInputProps) {
   return (
     <form action="">
         <select id="region" onChange={e =>handleFilterSubmit(e.target.value)}>

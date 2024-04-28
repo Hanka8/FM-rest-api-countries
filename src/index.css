@@ -1,10 +1,15 @@
 :root {
-  --dark-blue: hsl(209, 33%, 12%);
-  --very-dark-blue: hsl(207, 26%, 17%);
-  --dark-gray: hsl(200, 15%, 8%);
-  --med-gray: hsl(0, 0%, 52%);
-  --light-gray: hsl(0, 0%, 98%);
-  --white: hsl(0, 0%, 100%);
+  --text: hsl(200, 15%, 8%);
+  --input-bg: hsl(0, 0%, 100%);
+  --main-bg: hsl(0, 0%, 98%);
+  --shadow: hsl(207, 26%, 17%);
+}
+
+.darkmode {
+  --input-bg: hsl(209, 23%, 22%);
+  --main-bg: hsl(209, 33%, 12%);
+  --text: hsl(0, 0%, 100%);
+  --shadow: hsl(0, 0%, 52%);
 }
 
 * {
@@ -12,6 +17,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: var(--text);
+}
+
+body {
+  background-color: var(--main-bg);
 }
 
 .fw-1 {
@@ -27,7 +37,7 @@
 }
 
 .country-card {
-  background-color: var(--white);
+  background-color: var(--input-bg);
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   margin: 2rem 0;

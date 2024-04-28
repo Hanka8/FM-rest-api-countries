@@ -1,6 +1,12 @@
-import React from 'react'
+interface CountryProps {
+    flag: string;
+    name: string;
+    population: number;
+    region: string;
+    capital: string;
+}
 
-export default function Country({flag, name, population, region, capital}) {
+export default function Country({flag, name, population, region, capital}: CountryProps) {
   return (
     <div className='country-card'>
         <p>{name}</p>

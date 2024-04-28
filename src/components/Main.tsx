@@ -2,21 +2,49 @@ import {useEffect, useState} from 'react'
 import Country from './Country'
 import axios from 'axios'
 
-export default function Main({region}) {
+interface CountryData {
+    cca3: string;
+    name: {common: string};
+    population: number;
+    region: string;
+    capital: string;
+    flags: {png: string};
+}
 
-    const [countries, setCountries] = useState([]);
+interface MainProps {
+    region: string;
+    searchedCountry: string;
+}
+
+function Main({region, searchedCountry}: MainProps): JSX.Element  {
+
+    const [countries, setCountries] = useState<CountryData[]>([]);
 
     useEffect(() => {
-    const fetchCountries = async () => {
+    const fetchCountries = async (): Promise<void> => {
       try {
         if (region) {
+          if (searchedCountry) {
+            console.log(searchedCountry);
+            const response = await axios.get(`https://restcountries.com/v3.1/name/${searchedCountry}`);
+            setCountries(response.data);
+            return;
+          } else {
             const response = await axios.get(`https://restcountries.com/v3.1/region/${region.toLowerCase()}`);
             setCountries(response.data);
             return;
+          }
         } else {
+          if (searchedCountry) {
+            console.log(searchedCountry);
+            const response = await axios.get(`https://restcountries.com/v3.1/name/${searchedCountry}`);
+            setCountries(response.data);
+            return;
+          } else {
             const response = await axios.get('https://restcountries.com/v3.1/all');
             setCountries(response.data);
             return;
+            }
         }
       } catch (error) {
         console.error('Error fetching countries:', error);
@@ -24,11 +52,11 @@ export default function Main({region}) {
     };
 
     fetchCountries();
-  }, [region]);
+  }, [region, searchedCountry]);
 
     return (
         <div>
-            {countries.map((country) => (
+            {countries.map((country: CountryData) => (
                 <Country
                     key={country.cca3}
                     flag={country.flags.png}
@@ -42,3 +70,5 @@ export default function Main({region}) {
         </div>
     )
 }
+
+export default Main;

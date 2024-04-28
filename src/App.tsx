@@ -1,21 +1,40 @@
+import { useState } from 'react'
 import Main from './components/Main'
 import FilterInput from './components/FilterInput'
-import { useState } from 'react'
+import SearchBar from './components/SearchBar';
+import DarkmodeBtn from './components/DarkmodeBtn';
 
-function App() {
+function App(): JSX.Element {
 
-  const [region, setRegion] = useState('')
+  const [region, setRegion] = useState<string>('');
+  const [searchedCountry, setSearchedCountry] = useState<string>('');
+  const [darkmode, setDarkmode] = useState<boolean>(false);
 
-  const handleFilterSubmit = (region: string) => {
+  const handleFilterSubmit = (region: string): void => {
     setRegion(region);
+  }
+
+  const handleSearchSubmit = (searchedCountry: string): void => {
+    setSearchedCountry(searchedCountry);
+  }
+
+  const toggleDarkmode = (): void => {
+    setDarkmode(!darkmode);
+    if (darkmode) {
+      document.body.classList.remove('darkmode');
+    } else {
+      document.body.classList.add('darkmode');
+    }
   }
 
   return (
     <>
+      <DarkmodeBtn toggleDarkmode={toggleDarkmode} darkmode={darkmode} />
+      <SearchBar handleSearchSubmit={handleSearchSubmit}/>
       <FilterInput handleFilterSubmit={handleFilterSubmit} />
-      <Main region={region}/>
+      <Main region={region} searchedCountry={searchedCountry}/>
     </>
   )
 }
 
-export default App
+export default App;
