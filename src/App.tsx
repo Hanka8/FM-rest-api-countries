@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Main from './components/Main'
 import FilterInput from './components/FilterInput'
 import SearchBar from './components/SearchBar';
-import DarkmodeBtn from './components/DarkmodeBtn';
+import DarkmodeBtn from './components/Navbar';
 
 function App(): JSX.Element {
 
@@ -30,8 +30,10 @@ function App(): JSX.Element {
   return (
     <>
       <DarkmodeBtn toggleDarkmode={toggleDarkmode} darkmode={darkmode} />
-      <SearchBar handleSearchSubmit={handleSearchSubmit}/>
-      <FilterInput handleFilterSubmit={handleFilterSubmit} />
+      <div className='form-flex'>
+        <SearchBar handleSearchSubmit={handleSearchSubmit}/>
+        <FilterInput handleFilterSubmit={handleFilterSubmit} />
+      </div>
       <Main region={region} searchedCountry={searchedCountry}/>
     </>
   )
