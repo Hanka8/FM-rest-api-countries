@@ -11,11 +11,13 @@ interface CountryProps {
 export default function Country({flag, name, population, region, capital}: CountryProps) {
   return (
     <Link to={`/${name.replace(/\s/g, '_')}`} className='country-card'>
-        <p>{name}</p>
-        <img src={flag} alt={name} />
-        <p>Population: {population}</p>
-        <p>Region: {region}</p>
-        <p>Capital: {capital}</p>
+        <div className='card-flag-container'>       
+          <img className='card-flag-img' src={flag} alt={name} />
+        </div> 
+        <p className='card-name'>{name}</p>
+        <p className='card-info'><span className='bold'>Population: </span>{population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',' )}</p>
+        <p className='card-info'><span className='bold'>Region: </span>{region}</p>
+        <p className='card-info'><span className='bold'>Capital: </span>{capital}</p>
     </Link>
   )
 }

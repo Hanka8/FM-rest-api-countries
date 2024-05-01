@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Landing from './Landing';
-import CountryDetail from './CountryDetail';
+import CountryDetail from './components/CountryDetail';
 import { useState } from 'react';
 import './index.css'
 

@@ -1,4 +1,5 @@
-import DarkmodeBtn from './components/Navbar';
+import DarkmodeBtn from './Navbar';
+import BackBtn from './BackBtn';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
@@ -49,7 +50,7 @@ function CountryDetail({toggleDarkmode, darkmode}: NavbarProps):JSX.Element {
     useEffect(() => {
         const fetchCountry = async (): Promise<void> => {
             try {
-                const response = await axios.get(`https://restcountries.com/v3.1/name/${name.replace(/_/g, ' ')}?fullText=true`);
+                const response = await axios.get(`https://restcountries.com/v3.1/name/${name?.replace(/_/g, ' ')}?fullText=true`);
                 setCountryDetails(response.data[0]);
             } catch (error) {
                 console.error('Error fetching country:', error);
@@ -62,6 +63,7 @@ function CountryDetail({toggleDarkmode, darkmode}: NavbarProps):JSX.Element {
     return (
         <div>
             <DarkmodeBtn toggleDarkmode={toggleDarkmode} darkmode={darkmode} />
+            <BackBtn />
             <>
                 {countryDetails && (
                     <main className='country-details'>
@@ -69,14 +71,11 @@ function CountryDetail({toggleDarkmode, darkmode}: NavbarProps):JSX.Element {
                             <img className='details-flag-img' src={countryDetails.flags.svg} alt={countryDetails.flags.alt} />
                         </picture>
                         <div>
-                            <h1 className='details-h1'>{name.replace(/_/g, ' ')}</h1>
+                            <h1 className='details-h1'>{name?.replace(/_/g, ' ')}</h1>
                             <div className='details-box'>
                                 <div className='box-col'>
                                     <p><span className='bold'>Native name: </span> 
                                         {countryDetails.name.nativeName[Object.keys(countryDetails.languages)[0]].official}
-                                        {/* {Object.keys(countryDetails.name.nativeName).map((key) => (
-                                            <span key={key}> {countryDetails.name.nativeName[key].official}</span>
-                                        ))} */}
                                     </p>
                                     <p><span className='bold'>Population: </span> 
                                         {countryDetails.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',' )}

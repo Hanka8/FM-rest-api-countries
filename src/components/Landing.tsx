@@ -8,7 +8,7 @@ interface CountryData {
     population: number;
     region: string;
     capital: string;
-    flags: {png: string};
+    flags: {svg: string};
 }
 
 interface MainProps {
@@ -59,7 +59,7 @@ function Main({region, searchedCountry}: MainProps): JSX.Element  {
             {countries.map((country: CountryData) => (
                 <Country
                     key={country.cca3}
-                    flag={country.flags.png}
+                    flag={country.flags.svg}
                     name={country.name.common}
                     population={country.population}
                     region={country.region}

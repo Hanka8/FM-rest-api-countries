@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Main from './components/Main'
+import Main from './components/Landing'
 import FilterInput from './components/FilterInput'
 import SearchBar from './components/SearchBar';
 import DarkmodeBtn from './components/Navbar';
