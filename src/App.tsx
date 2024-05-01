@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Landing from './Landing';
 import CountryDetail from './CountryDetail';
 import { useState } from 'react';
+import './index.css'
 
 function App(): JSX.Element {
   const [darkmode, setDarkmode] = useState<boolean>(false);
@@ -19,7 +20,7 @@ function App(): JSX.Element {
     <>
       <Routes>
         <Route path='/' element={<Landing darkmode={darkmode} toggleDarkmode={toggleDarkmode} />} />
-        <Route path='/:name' element={<CountryDetail darkmode={darkmode} toggleDarkmode={toggleDarkmode} />} />
+        <Route path={'/:name'} element={<CountryDetail darkmode={darkmode} toggleDarkmode={toggleDarkmode} />} />
       </Routes>
     </>
   )

@@ -32,16 +32,12 @@ a {
   color: inherit;
 }
 
-.fw-1 {
-  font-weight: 300;
+ul {
+  list-style: none;
 }
 
-.fw-2 {
+.bold {
   font-weight: 600;
-}
-
-.fw-3 {
-  font-weight: 800;
 }
 
 .navbar {
@@ -193,4 +189,92 @@ a {
 
 .country-card img {
   width: 100%;
+}
+
+/* country details */
+
+.country-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 120px;
+  margin-inline: 80px;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+@media screen and (max-width: 768px) {
+  .country-details {
+    gap: 44px;
+    margin-inline: 28px;
+  }
+}
+
+.details-h1 {
+  margin-bottom: 23px;
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .details-h1 {
+    font-size: calc(22rem/16);
+  }
+}
+
+.details-box {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-bottom: 68px;
+  line-height: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .details-box {
+    margin-bottom: 34px;
+  }
+}
+
+.border-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.border-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.border-item {
+  background-color: var(--input-bg);
+  border-radius: 2px;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.1));
+  padding: 4px 28px;
+}
+
+.details-flag-pic {
+  width: 38.8%;
+}
+
+@media screen and (max-width: 1000px) {
+  .details-flag-pic {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .details-flag-pic {
+    width: 100%;
+  }
+}
+
+.details-flag-pic img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 14px 4px rgba(0, 0, 0, 0.029);
 }

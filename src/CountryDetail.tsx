@@ -9,42 +9,110 @@ interface NavbarProps {
 }
 
 interface CountryDetailProps {
-    name: {nativeName: string, common: string, official: string};
+    name: {
+        nativeName: {
+            [key: string]: {
+                official: string;
+                common: string;
+            };
+        };
+        common: string;
+        official: string;
+    };
     population: number;
     region: string;
     subregion: string;
     capital: Array<string>;
-    tld: [0];
-    currencies: {code: string, name: string, symbol: string};
-    languages: {ron: string};
+    tld: string[];
+    currencies: {
+        [key: string]: {
+            name: string;
+            symbol: string;
+        };
+    };
+    languages: {
+        [key: string]: string;
+    };
     borders: Array<string>;
-    flags: {png: string};
+    flags: {
+        svg: string;
+        alt: string;
+    };
 }
 
 function CountryDetail({toggleDarkmode, darkmode}: NavbarProps):JSX.Element {
     
     const { name } = useParams<{ name: string }>();
-    const [countryDetails, setCountryDetails] = useState<CountryDetailProps[]>([]);
+
+    const [countryDetails, setCountryDetails] = useState<CountryDetailProps | null>(null);
     
     useEffect(() => {
         const fetchCountry = async (): Promise<void> => {
             try {
-                const response = await axios.get(`https://restcountries.com/v3.1/name/${name}?fullText=true`);
+                const response = await axios.get(`https://restcountries.com/v3.1/name/${name.replace(/_/g, ' ')}?fullText=true`);
                 setCountryDetails(response.data[0]);
-                console.log(countryDetails);
             } catch (error) {
                 console.error('Error fetching country:', error);
             }
         };
         fetchCountry();
+        console.log(countryDetails);
     }, [name]);
 
     return (
         <div>
             <DarkmodeBtn toggleDarkmode={toggleDarkmode} darkmode={darkmode} />
-            <div>
-                <img src={countryDetails.flags?.png} alt={name} />
-            </div>
+            <>
+                {countryDetails && (
+                    <main className='country-details'>
+                        <picture className='details-flag-pic'>
+                            <img className='details-flag-img' src={countryDetails.flags.svg} alt={countryDetails.flags.alt} />
+                        </picture>
+                        <div>
+                            <h1 className='details-h1'>{name.replace(/_/g, ' ')}</h1>
+                            <div className='details-box'>
+                                <div className='box-col'>
+                                    <p><span className='bold'>Native name: </span> 
+                                        {countryDetails.name.nativeName[Object.keys(countryDetails.languages)[0]].official}
+                                        {/* {Object.keys(countryDetails.name.nativeName).map((key) => (
+                                            <span key={key}> {countryDetails.name.nativeName[key].official}</span>
+                                        ))} */}
+                                    </p>
+                                    <p><span className='bold'>Population: </span> 
+                                        {countryDetails.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',' )}
+                                    </p>
+                                    <p><span className='bold'>Region:</span> {countryDetails.region}</p>
+                                    <p><span className='bold'>Sub Region:</span> {countryDetails.subregion}</p>
+                                    <p><span className='bold'>Capital:</span> {countryDetails.capital}</p>
+                                </div>
+                                <div className='box-col'>
+                                    <p><span className='bold'>Top Level Domain:</span> {countryDetails.tld}</p>
+                                    <p><span className='bold'>Currencies:</span>
+                                        {Object.entries(countryDetails.currencies).map(([code, currency]) => (
+                                            <span key={code}> {currency.name} ({currency.symbol})</span>
+                                        ))}
+                                    </p>
+                                    <p><span className='bold'>Languages: </span> 
+                                        {Object.values(countryDetails.languages).map((language) => (language)).join(", ")}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className='border-countries'>
+                                <p className='bold'>Border Countries:</p>
+                                    {countryDetails.borders ? (
+                                        <ul className='border-items'>
+                                            {countryDetails.borders.map((border) => (
+                                                <li className='border-item' key={border}>{border}</li>
+                                            ))}
+                                        </ul>
+                                        ) : (
+                                        <p>None</p>
+                                    )}
+                            </div>
+                        </div>
+                    </main>
+                )}
+            </>
         </div>
     )
 }
