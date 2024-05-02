@@ -1,5 +1,6 @@
 import DarkmodeBtn from './Navbar';
 import BackBtn from './BackBtn';
+import ImageMagnifier from './ImageMagnifier';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
@@ -68,7 +69,13 @@ function CountryDetail({toggleDarkmode, darkmode}: NavbarProps):JSX.Element {
                 {countryDetails && (
                     <main className='country-details'>
                         <picture className='details-flag-pic'>
-                            <img className='details-flag-img' src={countryDetails.flags.svg} alt={countryDetails.flags.alt} />
+                            <ImageMagnifier 
+                                src={countryDetails.flags.svg} 
+                                alt={countryDetails.flags.alt}
+                                magnifieWidth={200}
+                                magnifierHeight={200}
+                                zoomLevel={2}
+                            />
                         </picture>
                         <div>
                             <h1 className='details-h1'>{name?.replace(/_/g, ' ')}</h1>
