@@ -231,7 +231,6 @@ ul {
 
 .country-details {
   display: flex;
-  flex-wrap: wrap;
   gap: 120px;
   margin-inline: 80px;
   align-items: center;
@@ -240,6 +239,7 @@ ul {
 
 @media screen and (max-width: 768px) {
   .country-details {
+    flex-wrap: wrap;
     gap: 44px;
     margin-inline: 28px;
   }
@@ -260,7 +260,6 @@ ul {
 .details-box {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   gap: 32px;
   margin-bottom: 68px;
   line-height: 2rem;
@@ -268,6 +267,7 @@ ul {
 
 @media screen and (max-width: 768px) {
   .details-box {
+    flex-wrap: wrap;
     margin-bottom: 34px;
   }
 }
