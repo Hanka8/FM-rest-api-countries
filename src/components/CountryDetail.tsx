@@ -3,14 +3,16 @@ import BackBtn from './BackBtn';
 import ImageMagnifier from './ImageMagnifier';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import axios from 'axios'
 
-interface NavbarProps {
+interface CountryDetailProps {
     darkmode: boolean;
     toggleDarkmode: () => void;
 }
 
-interface CountryDetailProps {
+interface CountryDetails {
+    nodeRef: React.RefObject<HTMLElement>;
     name: {
         nativeName: {
             [key: string]: {
@@ -42,11 +44,11 @@ interface CountryDetailProps {
     };
 }
 
-function CountryDetail({toggleDarkmode, darkmode}: NavbarProps):JSX.Element {
+function CountryDetail({toggleDarkmode, darkmode}: CountryDetailProps):JSX.Element {
     
     const { name } = useParams<{ name: string }>();
 
-    const [countryDetails, setCountryDetails] = useState<CountryDetailProps | null>(null);
+    const [countryDetails, setCountryDetails] = useState<CountryDetails | null>(null);
     
     useEffect(() => {
         const fetchCountry = async (): Promise<void> => {
@@ -58,14 +60,16 @@ function CountryDetail({toggleDarkmode, darkmode}: NavbarProps):JSX.Element {
             }
         };
         fetchCountry();
-        console.log(countryDetails);
     }, [name]);
 
     return (
-        <div>
+        <>
             <DarkmodeBtn toggleDarkmode={toggleDarkmode} darkmode={darkmode} />
             <BackBtn />
-            <>
+            <motion.div
+                initial={{width: "100%"}} 
+                animate={{width: '100%'}} 
+                exit={{opacity: 0, transition: {duration: 0.1}}}>
                 {countryDetails && (
                     <main className='country-details'>
                         <picture className='details-flag-pic'>
@@ -118,8 +122,8 @@ function CountryDetail({toggleDarkmode, darkmode}: NavbarProps):JSX.Element {
                         </div>
                     </main>
                 )}
-            </>
-        </div>
+        </motion.div>
+        </>
     )
 }
 

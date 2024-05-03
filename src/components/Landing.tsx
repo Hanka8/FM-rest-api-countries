@@ -1,74 +1,45 @@
-import {useEffect, useState} from 'react'
-import Country from './Country'
-import axios from 'axios'
+import { useState } from 'react'
+import CountryList from './CountryList'
+import FilterInput from './FilterInput'
+import SearchBar from './SearchBar';
+import DarkmodeBtn from './Navbar';
+import { motion } from 'framer-motion';
 
-interface CountryData {
-    cca3: string;
-    name: {common: string};
-    population: number;
-    region: string;
-    capital: string;
-    flags: {svg: string};
+interface NavbarProps {
+    darkmode: boolean;
+    toggleDarkmode: () => void;
 }
 
-interface MainProps {
-    region: string;
-    searchedCountry: string;
-}
+function Landing({darkmode,toggleDarkmode}: NavbarProps): JSX.Element {
 
-function Main({region, searchedCountry}: MainProps): JSX.Element  {
+  const [region, setRegion] = useState<string>('');
+  const [searchedCountry, setSearchedCountry] = useState<string>('');
 
-    const [countries, setCountries] = useState<CountryData[]>([]);
 
-    useEffect(() => {
-      const fetchCountries = async (): Promise<void> => {
-        try {
-          if (region) {
-            if (searchedCountry) {
-              const response = await axios.get(`https://restcountries.com/v3.1/name/${searchedCountry}`);
-              const filteredCountries = response.data.filter((country: CountryData) => country.region === region);
-              setCountries(filteredCountries);
-              return;
-            } else {
-              const response = await axios.get(`https://restcountries.com/v3.1/region/${region.toLowerCase()}`);
-              setCountries(response.data);
-              return;
-            }
-          } else {
-            if (searchedCountry) {
-              console.log(searchedCountry);
-              const response = await axios.get(`https://restcountries.com/v3.1/name/${searchedCountry}`);
-              setCountries(response.data);
-              return;
-            } else {
-              const response = await axios.get('https://restcountries.com/v3.1/all');
-              setCountries(response.data);
-              return;
-              }
-          }
-        } catch (error) {
-          console.error('Error fetching countries:', error);
-        }
-    };
+  const handleFilterSubmit = (region: string): void => {
+    setRegion(region);
+  }
 
-    fetchCountries();
-  }, [region, searchedCountry]);
+  const handleSearchSubmit = (searchedCountry: string): void => {
+    setSearchedCountry(searchedCountry);
+  }
 
+  
     return (
-        <div className='main'>
-            {countries.map((country: CountryData) => (
-                <Country
-                    key={country.cca3}
-                    flag={country.flags.svg}
-                    name={country.name.common}
-                    population={country.population}
-                    region={country.region}
-                    capital={country.capital}
-                />
-            ))
-            }
-        </div>
+        <>
+          <DarkmodeBtn toggleDarkmode={toggleDarkmode} darkmode={darkmode} />
+          <div className='form-flex'>
+              <SearchBar handleSearchSubmit={handleSearchSubmit}/>
+              <FilterInput handleFilterSubmit={handleFilterSubmit} />
+          </div>
+          <motion.div 
+            initial={{opacity: 0}} 
+            animate={{opacity: 1, transition: {duration: 0.2}}}
+            exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
+            <CountryList region={region} searchedCountry={searchedCountry}/>
+          </motion.div>
+        </>
     )
 }
 
-export default Main;
+export default Landing;
