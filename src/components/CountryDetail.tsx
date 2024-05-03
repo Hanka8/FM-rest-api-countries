@@ -138,7 +138,7 @@ function CountryDetail({toggleDarkmode, darkmode}: CountryDetailProps):JSX.Eleme
                                     ) : (
                                         <ul className='border-items'>
                                             {borderCountries.map((border) => (
-                                                <Link to={`/${border.replace(/\s/g, '_')}`} key={border}>
+                                                <Link to={`/${border.replace(/\s/g, '_')}`} key={`${border}_${name}`}>
                                                     <li className='border-item'>{border}</li>
                                                 </Link>
                                             ))}
