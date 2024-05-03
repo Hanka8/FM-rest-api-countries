@@ -1,11 +1,14 @@
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function BackBtn(): JSX.Element {
   return (
-    <button className="back-btn" onClick={() => window.history.back()}>
+    <Link to="/">
+    <button className="back-btn">
         <IoIosArrowRoundBack size={32} />
         Back
     </button>
+    </Link>
   );
 }
 

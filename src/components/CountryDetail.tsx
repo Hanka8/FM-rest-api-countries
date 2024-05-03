@@ -1,7 +1,7 @@
 import DarkmodeBtn from './Navbar';
 import BackBtn from './BackBtn';
 import ImageMagnifier from './ImageMagnifier';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios'
@@ -49,6 +49,7 @@ function CountryDetail({toggleDarkmode, darkmode}: CountryDetailProps):JSX.Eleme
     const { name } = useParams<{ name: string }>();
 
     const [countryDetails, setCountryDetails] = useState<CountryDetails | null>(null);
+    const [borderCountries, setBorderCountries] = useState<String[] | null>(null);
     
     useEffect(() => {
         const fetchCountry = async (): Promise<void> => {
@@ -61,6 +62,30 @@ function CountryDetail({toggleDarkmode, darkmode}: CountryDetailProps):JSX.Eleme
         };
         fetchCountry();
     }, [name]);
+
+    useEffect(() => {
+        const fetchBorderCountries = async () => {
+            let countryNames: string[] = [];
+
+            if (countryDetails?.borders) {
+                // wait to fetch all border countries
+                await Promise.all(
+                    countryDetails.borders.map(async (border) => {
+                        try {
+                            const response = await axios.get(`https://restcountries.com/v3.1/alpha/${border}`);
+                            countryNames.push(response.data[0].name.common);
+                        } catch (error) {
+                            console.error('Error fetching border country:', error);
+                        }
+                    })
+                );
+            }
+
+            setBorderCountries(countryNames);
+        };
+
+        fetchBorderCountries();
+    }, [countryDetails]);
 
     return (
         <>
@@ -109,14 +134,16 @@ function CountryDetail({toggleDarkmode, darkmode}: CountryDetailProps):JSX.Eleme
                             </div>
                             <div className='border-countries'>
                                 <p className='bold'>Border Countries:</p>
-                                    {countryDetails.borders ? (
+                                    {borderCountries === null || borderCountries.length === 0 ? (
+                                        <p>None</p>
+                                    ) : (
                                         <ul className='border-items'>
-                                            {countryDetails.borders.map((border) => (
-                                                <li className='border-item' key={border}>{border}</li>
+                                            {borderCountries.map((border) => (
+                                                <Link to={`/${border.replace(/\s/g, '_')}`} key={border}>
+                                                    <li className='border-item'>{border}</li>
+                                                </Link>
                                             ))}
                                         </ul>
-                                        ) : (
-                                        <p>None</p>
                                     )}
                             </div>
                         </div>
