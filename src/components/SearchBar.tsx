@@ -5,8 +5,9 @@ interface SearchBarProps {
 }
 
 function SearchBar({handleSearchSubmit}: SearchBarProps): JSX.Element {
+
   return (
-    <form className="search-form" action="" onChange={e => handleSearchSubmit(e.target.value)}>
+    <form className="search-form" action="" onChange={e => handleSearchSubmit((e.target as HTMLInputElement).value)}>
         <IoIosSearch size={18} className="search-ico" />
         <input className="search-input" type="text" placeholder="Search for a country..." />
         <span className="focus-border"></span>
