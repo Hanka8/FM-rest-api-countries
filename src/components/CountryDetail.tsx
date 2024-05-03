@@ -68,7 +68,6 @@ function CountryDetail({toggleDarkmode, darkmode}: CountryDetailProps):JSX.Eleme
             let countryNames: string[] = [];
 
             if (countryDetails?.borders) {
-                // wait to fetch all border countries
                 await Promise.all(
                     countryDetails.borders.map(async (border) => {
                         try {

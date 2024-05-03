@@ -170,6 +170,10 @@ ul {
   border-radius: 5px;
 }
 
+.filter-select:focus {
+  outline: 2px solid var(--form-placeholder);
+}
+
 .filter-select:focus .filter-option.hidden {
   display: none;
 }
@@ -235,11 +239,11 @@ ul {
   margin-inline: 80px;
   align-items: center;
   margin-bottom: 64px;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 768px) {
   .country-details {
-    flex-wrap: wrap;
     gap: 44px;
     margin-inline: 28px;
   }
@@ -259,6 +263,7 @@ ul {
 
 .details-box {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 32px;
   margin-bottom: 68px;
@@ -267,9 +272,12 @@ ul {
 
 @media screen and (max-width: 768px) {
   .details-box {
-    flex-wrap: wrap;
     margin-bottom: 34px;
   }
+}
+
+.box-col {
+  max-width: 50%;
 }
 
 .border-countries {
@@ -306,7 +314,7 @@ ul {
 }
 
 .details-flag-pic {
-  width: 38.8%;
+  width: 38.8vw;
 }
 
 @media screen and (max-width: 1000px) {
