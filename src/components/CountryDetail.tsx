@@ -105,12 +105,12 @@ function CountryDetail({toggleDarkmode, darkmode}: CountryDetailProps):JSX.Eleme
                                 zoomLevel={2}
                             />
                         </picture>
-                        <div>
+                        <div className='details-container'>
                             <h1 className='details-h1'>{name?.replace(/_/g, ' ')}</h1>
                             <div className='details-box'>
                                 <div className='box-col'>
-                                    <p><span className='bold'>Native name: </span> 
-                                        {countryDetails.name.nativeName[Object.keys(countryDetails.languages)[0]].official}
+                                    <p><span className='bold'>Native name: </span>
+                                        {Object.values(countryDetails.name.nativeName)[0].official}
                                     </p>
                                     <p><span className='bold'>Population: </span> 
                                         {countryDetails.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',' )}

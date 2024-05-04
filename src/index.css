@@ -233,6 +233,16 @@ ul {
 
 /* country details */
 
+.details-container {
+  max-width: 40vw;
+}
+
+@media screen and (max-width: 1200px) {
+  .details-container {
+    max-width: 100%;
+  }
+}
+
 .country-details {
   display: flex;
   gap: 120px;
@@ -280,6 +290,13 @@ ul {
   max-width: 50%;
 }
 
+@media screen and (max-width: 768px) {
+  .box-col {
+    max-width: 100%;
+  }
+  
+}
+
 .border-countries {
   display: flex;
   flex-wrap: wrap;
@@ -317,13 +334,7 @@ ul {
   width: 38.8vw;
 }
 
-@media screen and (max-width: 1000px) {
-  .details-flag-pic {
-    width: 75%;
-  }
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .details-flag-pic {
     width: 100%;
   }

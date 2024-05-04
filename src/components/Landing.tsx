@@ -26,7 +26,7 @@ function Landing({darkmode,toggleDarkmode}: NavbarProps): JSX.Element {
 
   
     return (
-        <>
+        <main>
           <DarkmodeBtn toggleDarkmode={toggleDarkmode} darkmode={darkmode} />
           <div className='form-flex'>
               <SearchBar handleSearchSubmit={handleSearchSubmit}/>
@@ -38,7 +38,7 @@ function Landing({darkmode,toggleDarkmode}: NavbarProps): JSX.Element {
             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
             <CountryList region={region} searchedCountry={searchedCountry}/>
           </motion.div>
-        </>
+        </main>
     )
 }
 
