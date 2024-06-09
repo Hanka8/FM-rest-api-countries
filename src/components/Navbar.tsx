@@ -16,7 +16,7 @@ function Navbar ({darkmode,toggleDarkmode}: NavbarProps): JSX.Element {
                 {darkmode ? 
                     <><MdOutlineDarkMode /> Dark mode</> : 
                     <><MdOutlineLightMode /> Light mode</>
-                    }
+                }
             </button>
         </nav>
     )
