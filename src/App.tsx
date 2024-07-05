@@ -1,13 +1,13 @@
 import AnimatedRoutes from './components/AnimatedRoutes';
-
+import { ThemeProvider } from "./ThemeContext.tsx";
 import './index.css'
 
 function App(): JSX.Element {
 
   return (
-    <>
-      <AnimatedRoutes />
-    </>
+      <ThemeProvider>
+        <AnimatedRoutes />
+      </ThemeProvider>
   )
 }
 

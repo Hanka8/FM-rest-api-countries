@@ -6,11 +6,6 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios'
 
-interface CountryDetailProps {
-    darkmode: boolean;
-    toggleDarkmode: () => void;
-}
-
 interface CountryDetails {
     nodeRef: React.RefObject<HTMLElement>;
     name: {
@@ -44,7 +39,7 @@ interface CountryDetails {
     };
 }
 
-function CountryDetail({toggleDarkmode, darkmode}: CountryDetailProps):JSX.Element {
+function CountryDetail():JSX.Element {
     
     const { name } = useParams<{ name: string }>();
 
@@ -88,7 +83,7 @@ function CountryDetail({toggleDarkmode, darkmode}: CountryDetailProps):JSX.Eleme
 
     return (
         <>
-            <DarkmodeBtn toggleDarkmode={toggleDarkmode} darkmode={darkmode} />
+            <DarkmodeBtn />
             <BackBtn />
             <motion.div
                 initial={{width: "100%"}} 

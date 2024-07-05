@@ -1,12 +1,11 @@
 import { MdOutlineDarkMode } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
+import { useTheme } from "../ThemeContext.tsx"
 
-interface NavbarProps {
-    darkmode: boolean;
-    toggleDarkmode: () => void;
-}
+function Navbar (): JSX.Element {
 
-function Navbar ({darkmode,toggleDarkmode}: NavbarProps): JSX.Element {
+    const { darkmode, toggleDarkmode } = useTheme();
+
     return (
         <nav className="navbar">
             <h1 className="navbar-h1">Where in the world?</h1>
