@@ -1,4 +1,4 @@
-interface FilterInputProps {
+type FilterInputProps = {
     handleFilterSubmit: (region: string) => void;
 }
 

@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios'
 
-interface CountryDetails {
+type CountryDetails = {
     nodeRef: React.RefObject<HTMLElement>;
     name: {
         nativeName: {
@@ -45,7 +45,7 @@ function CountryDetail():JSX.Element {
 
     const [countryDetails, setCountryDetails] = useState<CountryDetails | null>(null);
     const [borderCountries, setBorderCountries] = useState<String[] | null>(null);
-    
+  
     useEffect(() => {
         const fetchCountry = async (): Promise<void> => {
             try {

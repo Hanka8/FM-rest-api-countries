@@ -1,6 +1,6 @@
 import { IoIosSearch } from "react-icons/io";
 
-interface SearchBarProps {
+type SearchBarProps = {
     handleSearchSubmit: (search: string) => void;
 }
 

@@ -3,7 +3,7 @@ import Country from "./Country";
 import Loading from "./Loading";
 import axios from "axios";
 
-interface CountryData {
+type CountryData = {
   cca3: string;
   name: { common: string };
   population: number;
@@ -12,7 +12,7 @@ interface CountryData {
   flags: { svg: string };
 }
 
-interface MainProps {
+type MainProps = {
   region: string;
   searchedCountry: string;
 }

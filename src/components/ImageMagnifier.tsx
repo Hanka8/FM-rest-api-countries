@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-interface ImageMagnifierProps {
+type ImageMagnifierProps = {
     src: string;
     alt: string,
     magnifierHeight: number,
