@@ -84,6 +84,11 @@ ul {
   padding: 10px;
 }
 
+.navbar-btn:hover {
+  transform: scale(1.1);
+  transition: 300ms;
+}
+
 @media screen and (max-width: 768px) {
   .navbar-btn {
     font-size: calc(12rem/16);
@@ -144,8 +149,13 @@ ul {
   transition: 0.4s;
 }
 
-.search-input:focus ~ .focus-border {
+.search-input:hover ~ .focus-border {
   transition: 0.4s;
+  width: 100%;
+}
+
+.search-input:focus ~ .focus-border {
+  transition: 0s;
   width: 100%;
 }
 
@@ -179,7 +189,7 @@ ul {
   border-radius: 5px;
 }
 
-.filter-select:focus {
+.filter-select:focus, .filter-select:hover {
   outline: 2px solid var(--form-placeholder);
 }
 
