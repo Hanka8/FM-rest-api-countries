@@ -5,6 +5,7 @@
 - [Overview](#overview)
   - [Screenshot](#screenshot)
   - [Link](#link)
+- [How to run](#how-to-run) 
 - [My process](#my-process)
   - [Built with](#built-with)
   - [Continued development](#continued-development)
@@ -31,6 +32,37 @@ Key features
 ### Link
 
 - Live Site URL: [where-countries.netlify.app](where-countries.netlify.app)
+
+## How to run
+
+### Installation
+
+1. **Clone the repository:**
+
+   `git clone git@github.com:Hanka8/FM-product-feedback.git`
+
+2. **Navigate into the project directory:**
+   
+   `cd FM-product-feedback`
+
+3. **Install the dependencies:**
+   
+   using npm:
+  `npm install`
+
+   using yarn:
+   `yarn install`
+
+### Running the app
+
+1. **Start the development server:**
+
+   `npm run dev`
+
+2. **Open the app in your browser:**
+
+   The application should be running at http://localhost:5173 (or another port if specified by Vite). You can open this URL in your browser to view the app.
+
 
 ### Built with
 
