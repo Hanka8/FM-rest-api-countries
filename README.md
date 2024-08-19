@@ -30,7 +30,7 @@ Key features
 
 ### Link
 
-- Live Site URL: [Add live site URL here](where-countries.netlify.app/)
+- Live Site URL: [where-countries.netlify.app](where-countries.netlify.app)
 
 ### Built with
 
