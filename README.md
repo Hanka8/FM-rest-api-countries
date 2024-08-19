@@ -39,11 +39,11 @@ Key features
 
 1. **Clone the repository:**
 
-   `git clone git@github.com:Hanka8/FM-product-feedback.git`
+   `git clone git@github.com:Hanka8/FM-rest-api-countries.git`
 
 2. **Navigate into the project directory:**
    
-   `cd FM-product-feedback`
+   `cd FM-rest-api-countries`
 
 3. **Install the dependencies:**
    
